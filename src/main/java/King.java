@@ -6,10 +6,9 @@ public class King extends Chess{
     char x;
     String name = "King";
     public King(int y, char x) {
-        this.y = y;
-        this.x = x;
+        super(y,x);
     }
-    public boolean move(King start, King end){
+    public boolean move(Chess start, Chess end){
       if((start.x == end.x) & (Math.abs(start.y -end.y)==1)) return true;
         else if ((start.y == end.y) & (Math.abs(start.x -end.x)==1)) return true;
         else return false;

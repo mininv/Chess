@@ -2,7 +2,7 @@
  * Created by vlad on 28.06.16.
  */
 public class Action {
-    Chess [] chesses = new Chess [10];
+    public Chess [] chesses = new Chess [10];
     private int position = 0;
     // добавляем фигуру на вирт доску
     public Chess add(Chess chess){

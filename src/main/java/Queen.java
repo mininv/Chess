@@ -6,10 +6,9 @@ public class Queen extends Chess{
     char x;
     String name = "Queen";
     public Queen(int y, char x) {
-        this.y = y;
-        this.x = x;
+        super(y,x);
     }
-    public boolean move(Queen start, Queen end){
+    public boolean move(Chess start, Chess end){
         if((start.x != end.x) & (start.y!=end.y)
                 & (Math.abs(start.y -end.y)==Math.abs(start.x -end.x))) return true;
         if((start.x == end.x) & (start.y!=end.y)) return true;

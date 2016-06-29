@@ -17,4 +17,12 @@ public class Chess {
     }
     public char getX(){return x;}
     public int getY(){return y;}
+    public void setX(char x){this.x = x;}
+    public void setY(int y){this.y = y;}
+    public boolean move(Chess start, Chess end){
+        if((start.getX()== end.getX()) &(start.getY()== end.getY())){
+            return false;
+        }
+        else return true;
+    }
 }
