@@ -7,6 +7,7 @@ public class Queen extends Chess{
     String name = "Queen";
     public Queen(int y, char x) {
         super(y,x);
+        super.name= this.name;
     }
     public boolean move(Chess start, Chess end){
         if((start.x != end.x) & (start.y!=end.y)

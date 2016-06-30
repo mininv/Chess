@@ -7,6 +7,7 @@ public class Rook extends Chess{
     String name = "Rook";
     public Rook(int y, char x) {
         super(y,x);
+        super.name= this.name;
     }
     public boolean move(Chess start, Chess end){
         if((start.x == end.x) & (start.y!=end.y)) return true;

@@ -2,6 +2,8 @@
  * Created by vlad on 28.06.16.
  */
 public class MenuAction {
+    private  char[] chrang = {'a', 'b', 'c', 'd','e','f','g'};
+    private  int [] cifri = {1,2,3,4,5,6,7,8};
     private ConsoleInput input;//Объекты из вне, кторые используются
     private Action action;//в нашей программе - Ввод, выывод и Хранилище
     private UserAction[] acts = new UserAction[3];//действия которые описанны в системе
@@ -40,10 +42,19 @@ public class MenuAction {
         }
 
         public void execute(ConsoleInput input, Action action){
+            String que = input.ask("Введите тип фигуры(King, Knight, Bishop, Pawn, Queen, Rook): ");
             int y = Integer.parseInt(input.ask("Вводим числовой литерал 1-8: "));
             String alf = input.ask("Водим буквенный литерал a-h: ");
             char x = alf.charAt(0);
-            action.add(new Chess(y,x));
+            if(que.equals("King")){action.add(new King(y,x)); }
+            else if (que.equals("Knight")){if (proverka(y, x))action.add(new Knight(y,x));
+            else System.out.println("Ну как так то");
+            }
+            else if (que.equals("Bishop")){action.add(new Bishop(y,x));}
+            else if (que.equals("Pawn")){action.add(new Pawn(y,x));}
+            else if (que.equals("Queen")){action.add(new Queen(y,x));}
+            else if (que.equals("Rook")){action.add(new Rook(y,x));}
+            else System.out.println("Ататат");
         }
         public String info(){
             return String.format("%s. %s", this.key(),
@@ -83,8 +94,8 @@ public class MenuAction {
             public void execute(ConsoleInput input, Action action){
                 String nameCh = input.ask("Please, enter the name of figure: ");
                 for (Chess chess: action.chesses) {
-                    if (chess.getName().equals(nameCh)) {
-                        System.out.println(String.format("name- %s, name- %s, desc- %s.",
+                    if (chess!=null && chess.getName().equals(nameCh)) {
+                        System.out.println(String.format("name- %s, bukva- %s, cifra- %s.",
                                 chess.getName(),
                                 chess.getX(), chess.getY()));
                     }
@@ -93,15 +104,18 @@ public class MenuAction {
                 String alf = input.ask("Водим буквенный литерал a-h: ");
                 char x = alf.charAt(0);
                 for (Chess ches: action.chesses) {
-                   if (ches.getY() == y & ches.getY() == x) {
+                    if (ches!=null && ches.getY() == y & ches.getX() == x) {
                        System.out.println("Вы выбрали - ");
-                       System.out.println(String.format("name- %s, name- %s, desc- %s.",
+                       System.out.println(String.format("name- %s, bukva- %s, cifra- %s.",
                        ches.getName(),
                        ches.getX(), ches.getY()));
                        int yn = Integer.parseInt(input.ask("Вводим новый числовой литерал 1-8: "));
                        String alfn = input.ask("Вводим новый буквенный литерал a-h: ");
-                       char xn = alf.charAt(0);
-                       if(ches.move(ches, new Chess(yn,xn))){ches.setX(xn);ches.setY(yn);}
+                       char xn = alfn.charAt(0);
+                       if(ches.move(ches, new Chess(yn,xn))){
+                           ches.setX(xn);ches.setY(yn);
+                           System.out.println("Вce ok "+ches.getName() +" может так ходить");
+                       }
                        else System.out.println("Вы сделали не правильный ход!!! ");
                    }
                 }
@@ -111,4 +125,20 @@ public class MenuAction {
                         this.name );
             }
         }
+    public boolean proverka(int yn, char xn){
+        boolean one = false;
+        boolean two =false;
+        for (int v:
+                cifri) {
+            if( v==yn )  one = true;
+            System.out.println("Yraaa");
+        }
+        for (char g:
+                chrang) {
+            if( g==xn ) two = true;
+            System.out.println("Yraaa2");
+        }
+        if(one & two) return true;
+        else return false;
+    }
     }

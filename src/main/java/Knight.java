@@ -7,6 +7,7 @@ public class Knight extends Chess{
     String name = "Knight";
     public Knight(int y, char x) {
        super(y,x);
+        super.name= this.name;
     }
     public boolean move(Chess start, Chess end){
         if( (Math.abs(start.y -end.y))== 1 & (Math.abs(start.x -end.x) == 2)) return true;

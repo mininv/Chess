@@ -7,6 +7,7 @@ public class Pawn extends Chess{
     String name = "Pawn";
     public Pawn(int y, char x) {
         super(y,x);
+        super.name= this.name;
     }
     public boolean move(Chess start, Chess end){
         if((start.x == end.x) & (Math.abs(start.y -end.y)==1)) return true;
