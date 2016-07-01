@@ -6,14 +6,29 @@ public class Action {
     private int position = 0;
     // добавляем фигуру на вирт доску
     public Chess add(Chess chess){
-        this.chesses[position++] = chess;
+        if(this.chesses[0]==null)this.chesses[position++] = chess;
+        else {
+            boolean step = true;
+            for (Chess ch : chesses) {
+                if (ch != null && (ch.getX() == chess.getX()) &&
+                        (ch.getY() == chess.getY())) {System.out.println("Клетка занята то");
+                step = false;
+                break;}
+            }
+            if (step)this.chesses[position++] = chess;
+        }
+
+        //this.chesses[position++] = chess;
         return chess;
     }
     //метод проверяющий наличие других фигур в клетке
     public boolean isEmpt(Chess chess){
         boolean step = true;
         for (Chess ch: chesses){
-            if (ch != null & ch.getX() == chess.getX() & ch.getY() == chess.getY()) step = false;
+            if (ch != null && ch.getX() == chess.getX() && ch.getY() == chess.getY()) {
+                System.out.println("Клетка занята");
+                step = false;
+            }
         }
         return step;
     }

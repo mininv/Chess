@@ -2,7 +2,7 @@
  * Created by vlad on 28.06.16.
  */
 public class MenuAction {
-    private  char[] chrang = {'a', 'b', 'c', 'd','e','f','g'};
+    private  char[] chrang = {'a', 'b', 'c', 'd','e','f','g','h'};
     private  int [] cifri = {1,2,3,4,5,6,7,8};
     private ConsoleInput input;//Объекты из вне, кторые используются
     private Action action;//в нашей программе - Ввод, выывод и Хранилище
@@ -14,9 +14,9 @@ public class MenuAction {
         this.action = action;
     }
     public void fillActions(){
-        this.acts[position++] = (UserAction) this.new AddChess("Add the new chess. ");
-        this.acts[position++] = (UserAction) this.new ShowChesses("Show all items. ");
-        this.acts[position++] = (UserAction) this.new MoveChess("Add the change items fields. ");
+        this.acts[position++] = (UserAction) this.new AddChess("Add a new figure. ");
+        this.acts[position++] = (UserAction) this.new ShowChesses("Show all figures. ");
+        this.acts[position++] = (UserAction) this.new MoveChess("Move the selected figures. ");
 
     }
 
@@ -43,18 +43,15 @@ public class MenuAction {
 
         public void execute(ConsoleInput input, Action action){
             String que = input.ask("Введите тип фигуры(King, Knight, Bishop, Pawn, Queen, Rook): ");
-            int y = Integer.parseInt(input.ask("Вводим числовой литерал 1-8: "));
-            String alf = input.ask("Водим буквенный литерал a-h: ");
-            char x = alf.charAt(0);
+            int y = input.ask(("Вводим числовой литерал 1-8: "), cifri);
+            char x = input.ask("Водим буквенный литерал a-h: ",chrang);
             if(que.equals("King")){action.add(new King(y,x)); }
-            else if (que.equals("Knight")){if (proverka(y, x))action.add(new Knight(y,x));
-            else System.out.println("Ну как так то");
-            }
+            else if (que.equals("Knight")){action.add(new Knight(y,x));}
             else if (que.equals("Bishop")){action.add(new Bishop(y,x));}
             else if (que.equals("Pawn")){action.add(new Pawn(y,x));}
             else if (que.equals("Queen")){action.add(new Queen(y,x));}
             else if (que.equals("Rook")){action.add(new Rook(y,x));}
-            else System.out.println("Ататат");
+            else System.out.println("Введите название фигуры из предложенных");
         }
         public String info(){
             return String.format("%s. %s", this.key(),
@@ -73,7 +70,7 @@ public class MenuAction {
 
             public void execute(ConsoleInput input, Action action){
                 for (Chess chess: action.getAll()){
-                    System.out.println(String.format("name- %s, name- %s, desc- %s.", chess.getName(),
+                    System.out.println(String.format("figure %s: %s%s.", chess.getName(),
                             chess.getX() , chess.getY()));
                 }
             }
@@ -95,24 +92,23 @@ public class MenuAction {
                 String nameCh = input.ask("Please, enter the name of figure: ");
                 for (Chess chess: action.chesses) {
                     if (chess!=null && chess.getName().equals(nameCh)) {
-                        System.out.println(String.format("name- %s, bukva- %s, cifra- %s.",
+                        System.out.println(String.format("figure %s: %s%s.",
                                 chess.getName(),
                                 chess.getX(), chess.getY()));
                     }
                 }
-                int y = Integer.parseInt(input.ask("Вводим числовой литерал 1-8: "));
-                String alf = input.ask("Водим буквенный литерал a-h: ");
-                char x = alf.charAt(0);
+                int y = input.ask(("Вводим числовой литерал 1-8: "), cifri);
+                char x = input.ask("Водим буквенный литерал a-h: ", chrang);
                 for (Chess ches: action.chesses) {
-                    if (ches!=null && ches.getY() == y & ches.getX() == x) {
-                       System.out.println("Вы выбрали - ");
-                       System.out.println(String.format("name- %s, bukva- %s, cifra- %s.",
+                    if (ches!=null && ches.getY() == y && ches.getX() == x) {
+                       System.out.print("Вы выбрали - ");
+                       System.out.println(String.format("figure %s: %s%s.",
                        ches.getName(),
                        ches.getX(), ches.getY()));
-                       int yn = Integer.parseInt(input.ask("Вводим новый числовой литерал 1-8: "));
-                       String alfn = input.ask("Вводим новый буквенный литерал a-h: ");
-                       char xn = alfn.charAt(0);
-                       if(ches.move(ches, new Chess(yn,xn))){
+                        int yn = input.ask(("Вводим  новый числовой литерал 1-8: "), cifri);
+                        char xn = input.ask("Водим новвый буквенный литерал a-h: ", chrang);
+                       if((action.isEmpt(new Chess(yn ,xn))) &&
+                               ches.move(ches, new Chess(yn,xn))){
                            ches.setX(xn);ches.setY(yn);
                            System.out.println("Вce ok "+ches.getName() +" может так ходить");
                        }
@@ -125,20 +121,5 @@ public class MenuAction {
                         this.name );
             }
         }
-    public boolean proverka(int yn, char xn){
-        boolean one = false;
-        boolean two =false;
-        for (int v:
-                cifri) {
-            if( v==yn )  one = true;
-            System.out.println("Yraaa");
-        }
-        for (char g:
-                chrang) {
-            if( g==xn ) two = true;
-            System.out.println("Yraaa2");
-        }
-        if(one & two) return true;
-        else return false;
-    }
+
     }

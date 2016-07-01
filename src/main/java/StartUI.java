@@ -13,13 +13,14 @@ public class StartUI {
         menu.fillActions();
         do{
             menu.show();
-            int key = input.ask("Select: ",range);
+            int key = input.ask("Select: ",this.range);
             menu.select(key);
         } while(!"y".equals(this.input.ask("Exit?(y): ")));
     }
     public static void main(String[] args){
         ConsoleInput input = new ValidateInput();
         new StartUI(input).init();
+
     }
 
 }

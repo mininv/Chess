@@ -18,4 +18,20 @@ public class ValidateInput extends ConsoleInput{
         }while(invalid);
         return value;
     }
+    public char ask(String question, char[] range){
+        boolean invalid = true;
+        char value = 'z';
+        do{
+            try{
+                value = super.ask(question, range);//родительский конструтор метода ask
+                invalid = false;
+            }catch(MenuOutException moe){
+                System.out.println("Please select key from menu. ");
+            }
+            catch(NumberFormatException nfe){
+                System.out.println("Please enter validate data again. ");
+            }
+        }while(invalid);
+        return value;
+    }
 }

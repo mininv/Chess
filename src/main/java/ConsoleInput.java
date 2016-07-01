@@ -25,4 +25,21 @@ public class ConsoleInput {
             throw new MenuOutException("Out of menu range. ");
         }
     }
+
+    public char ask(String question ,char[] range){
+        String alf = this.ask(question);
+        char x = alf.charAt(0);
+        boolean exist = false;
+        for(char value : range){
+            if(value == x){
+                exist =true;
+                break;
+            }
+        }
+        if (exist){
+            return x;
+        } else{
+            throw new MenuOutException("Out of menu range. ");
+        }
+    }
 }
