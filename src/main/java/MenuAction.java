@@ -107,7 +107,7 @@ public class MenuAction {
                        ches.getX(), ches.getY()));
                         int yn = input.ask(("Вводим  новый числовой литерал 1-8: "), cifri);
                         char xn = input.ask("Водим новвый буквенный литерал a-h: ", chrang);
-                       if((action.isEmpt(new Chess(yn ,xn))) &&
+                       if((action.nichegonemeshaet(ches, new Chess(yn,xn))) &&
                                ches.move(ches, new Chess(yn,xn))){
                            ches.setX(xn);ches.setY(yn);
                            System.out.println("Вce ok "+ches.getName() +" может так ходить");

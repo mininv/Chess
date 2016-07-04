@@ -27,6 +27,7 @@ public class Chess {
         if((start.getX()== end.getX()) &(start.getY()== end.getY())){
             return false;
         }
+
         else return true;
     }
 }
