@@ -20,7 +20,5 @@ public class StartUI {
     public static void main(String[] args){
         ConsoleInput input = new ValidateInput();
         new StartUI(input).init();
-
     }
-
 }

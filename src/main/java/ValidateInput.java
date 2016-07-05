@@ -34,4 +34,20 @@ public class ValidateInput extends ConsoleInput{
         }while(invalid);
         return value;
     }
+    public String ask(String question, String[] ra){
+        boolean invalid = true;
+        String value="";
+        do{
+            try{
+                value = super.ask(question, ra);//родительский конструтор метода ask
+                invalid = false;
+            }catch(MenuOutException moe){
+                System.out.println("Please select key from menu. ");
+            }
+            catch(NumberFormatException nfe){
+                System.out.println("Please enter validate data again. ");
+            }
+        }while(invalid);
+        return value;
+    }
 }

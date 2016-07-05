@@ -4,6 +4,7 @@
 public class MenuAction {
     private  char[] chrang = {'a', 'b', 'c', 'd','e','f','g','h'};
     private  int [] cifri = {1,2,3,4,5,6,7,8};
+    private String[] namesCH = {"King","Knight","Bishop","Pawn","Queen","Rook"};
     private ConsoleInput input;//Объекты из вне, кторые используются
     private Action action;//в нашей программе - Ввод, выывод и Хранилище
     private UserAction[] acts = new UserAction[3];//действия которые описанны в системе
@@ -42,7 +43,7 @@ public class MenuAction {
         }
 
         public void execute(ConsoleInput input, Action action){
-            String que = input.ask("Введите тип фигуры(King, Knight, Bishop, Pawn, Queen, Rook): ");
+            String que = input.ask("Введите тип фигуры(King, Knight, Bishop, Pawn, Queen, Rook): ", namesCH);
             int y = input.ask(("Вводим числовой литерал 1-8: "), cifri);
             char x = input.ask("Водим буквенный литерал a-h: ",chrang);
             if(que.equals("King")){action.add(new King(y,x)); }
@@ -89,7 +90,7 @@ public class MenuAction {
             }
 
             public void execute(ConsoleInput input, Action action){
-                String nameCh = input.ask("Please, enter the name of figure: ");
+                String nameCh = input.ask("Please, enter the name of figure: ",namesCH);
                 for (Chess chess: action.chesses) {
                     if (chess!=null && chess.getName().equals(nameCh)) {
                         System.out.println(String.format("figure %s: %s%s.",
@@ -97,17 +98,17 @@ public class MenuAction {
                                 chess.getX(), chess.getY()));
                     }
                 }
-                int y = input.ask(("Вводим числовой литерал 1-8: "), cifri);
-                char x = input.ask("Водим буквенный литерал a-h: ", chrang);
+                char x = input.ask("Вводим буквенный литерал фигур, которую вы выбрал (a-h): ", chrang);
+                int y = input.ask(("Вводим числовой литерал фигуры, которую вы выбрали (1-8): "), cifri);
                 for (Chess ches: action.chesses) {
                     if (ches!=null && ches.getY() == y && ches.getX() == x) {
                        System.out.print("Вы выбрали - ");
                        System.out.println(String.format("figure %s: %s%s.",
                        ches.getName(),
                        ches.getX(), ches.getY()));
-                        int yn = input.ask(("Вводим  новый числовой литерал 1-8: "), cifri);
                         char xn = input.ask("Водим новвый буквенный литерал a-h: ", chrang);
-                       if((action.nichegonemeshaet(ches, new Chess(yn,xn))) &&
+                        int yn = input.ask(("Вводим  новый числовой литерал 1-8: "), cifri);
+                         if((action.nichegonemeshaet(ches, new Chess(yn,xn))) &&
                                ches.move(ches, new Chess(yn,xn))){
                            ches.setX(xn);ches.setY(yn);
                            System.out.println("Вce ok "+ches.getName() +" может так ходить");
