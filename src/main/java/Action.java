@@ -2,7 +2,7 @@
  * Created by vlad on 28.06.16.
  */
 public class Action {
-    public Chess [] chesses = new Chess [100];
+    public Chess [] chesses = new Chess [64];// максю число фигур на шахматной доске
     private int position = 0;
     // добавляем фигуру на вирт доску
     public Chess add(Chess chess){
@@ -17,8 +17,6 @@ public class Action {
             }
             if (step)this.chesses[position++] = chess;
         }
-
-        //this.chesses[position++] = chess;
         return chess;
     }
 
@@ -30,13 +28,14 @@ public class Action {
         }
         return result;
     }
-    public boolean nichegonemeshaet(Chess start, Chess end){
+    public boolean moveByChess(Chess start, Chess end){
         boolean hop = true;
-        if (start.getName() == "Knight"|start.getName() == "Pawn"| start.getName() == "King"){// условие наличия фигур у коняки
+        if (start.getName() == "Knight"|start.getName() == "Pawn"|
+                start.getName() == "King"){// условие наличия фигур у коняки
             for (Chess ch: chesses
                  ) {
                 if(ch != null && ch.getX()==end.getX() & ch.getY()== end.getY()){
-                    System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                    System.out.println("On the motion of the line is a figure ");
                     hop = false;
                     break;
                 }
@@ -44,15 +43,17 @@ public class Action {
         }
         if (start.getName() == "Bishop"|
                 start.getName() == "Rook" | start.getName() == "Queen") {
-            if (start.getY() == end.getY() & end.getX() != start.getX()) {  System.out.println("перемещение по горизонтали");// перемещение по горизонтали
+            if (start.getY() == end.getY()
+                    & end.getX() != start.getX()) { // перемещение по горизонтали
                 if (end.getX() > start.getX()) {
                     char i = (char) (start.getX() + 1);
                     for (; i <= end.getX(); i++) {
                         Chess chez = new Chess(start.getY(), i);
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){ hop = false;
-                            System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX()
+                                    & ch.getY() == chez.getY()){ hop = false;
+                            System.out.println("On the motion of the line is a figure ");
                             break;}
                         }
                     }
@@ -62,8 +63,9 @@ public class Action {
                         Chess chez = new Chess(start.getY(), i);
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){
-                                System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX() &
+                                    ch.getY() == chez.getY()){
+                                System.out.println("On the motion of the line is a figure ");
                                 hop = false;
                                 break;}
                         }
@@ -77,8 +79,9 @@ public class Action {
                         Chess chez = new Chess(i, start.getX());
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){
-                                System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX()
+                                    & ch.getY() == chez.getY()){
+                                System.out.println("On the motion of the line is a figure ");
                                 hop = false;
                             break;}
                         }
@@ -89,8 +92,9 @@ public class Action {
                         Chess chez = new Chess(i, start.getX());
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){
-                                System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX()
+                                    & ch.getY() == chez.getY()){
+                                System.out.println("On the motion of the line is a figure ");
                                 hop = false;
                                 break;}
                         }
@@ -104,8 +108,9 @@ public class Action {
                         Chess chez = new Chess(  i, X--);
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){
-                                System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX()
+                                    & ch.getY() == chez.getY()){
+                                System.out.println("On the motion of the line is a figure ");
                                 hop = false;
                             break;}
                         }
@@ -117,8 +122,9 @@ public class Action {
                         Chess chez = new Chess(  i, X--);
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){
-                                System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX()
+                                    & ch.getY() == chez.getY()){
+                                System.out.println("On the motion of the line is a figure ");
                                 hop = false;
                             break;}
                         }
@@ -132,8 +138,9 @@ public class Action {
                         Chess chez = new Chess(  i, X++);
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){
-                                System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX()
+                                    & ch.getY() == chez.getY()){
+                                System.out.println("On the motion of the line is a figure ");
                                 hop = false;
                             break;}
                         }
@@ -145,8 +152,9 @@ public class Action {
                         Chess chez = new Chess(  i, X++);
                         for (Chess ch : chesses
                                 ) {
-                            if (ch != null && ch.getX() == chez.getX() & ch.getY() == chez.getY()){
-                                System.out.println("На пути вашей фигуры стоит другая. Так незя");
+                            if (ch != null && ch.getX() == chez.getX()
+                                    & ch.getY() == chez.getY()){
+                                System.out.println("On the motion of the line is a figure ");
                                 hop = false;
                             break;}
                         }
@@ -154,7 +162,6 @@ public class Action {
                 }
             }
         }
-        System.out.println(hop);
         return hop;
     }
 }

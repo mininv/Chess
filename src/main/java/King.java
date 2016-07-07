@@ -4,6 +4,8 @@
 public class King extends Chess{
     int y;
     char x;
+    Chess[]newMove = new King[20];
+    int position = 0;
     String name = "King";
     public King(int y, char x) {
         super(y,x);
@@ -14,5 +16,33 @@ public class King extends Chess{
         else if ((start.y == end.y) & (Math.abs(start.x -end.x)==1)) return true;
         else return false;
     }
+    public Chess[] allMoves(Chess start) {
+        int y = start.getY() -1;
+        char x = (char) (start.getX() - 1);
+        do{
+            newMove[position++] = new King(y++, x);
+        }while (y<= start.getY()+1);
+        y = start.getY() -1;
+        x = start.getX();
+        do{
+            newMove[position++] = new King(y++, x);
+        }while (y<= start.getY()+1);
+        y = start.getY() -1;
+        x = (char) (start.getX()+1);
+        do{
+            newMove[position++] = new King(y++, x);
+        }while (y<= start.getY()+1);
+        return newMove;
+    }
+    public boolean canMove(Chess end){// проверка попадания конечного хода в массив
+        boolean move = false;
+        for (Chess css: newMove) {
+            if ( css!= null&& css.getY() == end.getY() && css.getX() == end.getX() ){
+                move = true;
+                break;
+            }
+        }
+        return move;
+    }
 
-}
+    }

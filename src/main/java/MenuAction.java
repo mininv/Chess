@@ -2,9 +2,9 @@
  * Created by vlad on 28.06.16.
  */
 public class MenuAction {
-    private  char[] chrang = {'a', 'b', 'c', 'd','e','f','g','h'};
-    private  int [] cifri = {1,2,3,4,5,6,7,8};
-    private String[] namesCH = {"King","Knight","Bishop","Pawn","Queen","Rook"};
+    private  char[] chrang = {'a', 'b', 'c', 'd','e','f','g','h'};//допустимый ввод букв
+    private  int [] cifri = {1,2,3,4,5,6,7,8};//допустимый ввод цифр
+    private String[] namesCH = {"King","Knight","Bishop","Pawn","Queen","Rook"};//допустимые названия клеток
     private ConsoleInput input;//Объекты из вне, кторые используются
     private Action action;//в нашей программе - Ввод, выывод и Хранилище
     private UserAction[] acts = new UserAction[3];//действия которые описанны в системе
@@ -52,7 +52,6 @@ public class MenuAction {
             else if (que.equals("Pawn")){action.add(new Pawn(y,x));}
             else if (que.equals("Queen")){action.add(new Queen(y,x));}
             else if (que.equals("Rook")){action.add(new Rook(y,x));}
-            else System.out.println("Введите название фигуры из предложенных");
         }
         public String info(){
             return String.format("%s. %s", this.key(),
@@ -108,13 +107,14 @@ public class MenuAction {
                        ches.getX(), ches.getY()));
                         char xn = input.ask("Водим новвый буквенный литерал a-h: ", chrang);
                         int yn = input.ask(("Вводим  новый числовой литерал 1-8: "), cifri);
-                         if((action.nichegonemeshaet(ches, new Chess(yn,xn))) &&
-                               ches.move(ches, new Chess(yn,xn))){
+                        ches.allMoves(ches);
+                        if((action.moveByChess(ches, new Chess(yn,xn))) &&
+                               ches.canMove(new Chess(yn,xn))){
                            ches.setX(xn);ches.setY(yn);
                            System.out.println("Вce ok "+ches.getName() +" может так ходить");
-                       }
-                       else System.out.println("Вы сделали не правильный ход!!! ");
-                   }
+                        }
+                        else System.out.println("Вы сделали не правильный ход!!! ");
+                    }
                 }
             }
             public String info(){
