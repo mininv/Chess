@@ -11,9 +11,17 @@ public class Knight extends Chess{
        super(y,x);
         super.name= this.name;
     }
-    public boolean move(Chess start, Chess end){
-        if( (Math.abs(start.y -end.y))== 1 & (Math.abs(start.x -end.x) == 2)) return true;
-        if( (Math.abs(start.y -end.y))== 2 & (Math.abs(start.x -end.x) == 1 )) return true;
+    public boolean move(Chess start, Chess end, Chess[] chesses){
+        for (Chess ch: chesses
+                ) {
+            if(ch != null && ch.getX()==end.getX() & ch.getY()== end.getY()){
+                System.out.println("On the motion of the line is a figure ");
+                hop = false;
+                break;
+            }
+        }
+        if( hop && (Math.abs(start.y -end.y))== 1 & (Math.abs(start.x -end.x) == 2)) return true;
+        if( hop && (Math.abs(start.y -end.y))== 2 & (Math.abs(start.x -end.x) == 1 )) return true;
         else return false;
     }
     public Chess[] allMoves(Chess start){//запись массива возможных ходов

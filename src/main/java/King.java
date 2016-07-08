@@ -11,9 +11,17 @@ public class King extends Chess{
         super(y,x);
         super.name= this.name;
     }
-    public boolean move(Chess start, Chess end){
-      if((start.x == end.x) & (Math.abs(start.y -end.y)==1)) return true;
-        else if ((start.y == end.y) & (Math.abs(start.x -end.x)==1)) return true;
+    public boolean move(Chess start, Chess end, Chess[] chesses){
+        for (Chess ch: chesses
+                ) {
+            if(ch != null && ch.getX()==end.getX() & ch.getY()== end.getY()){
+                System.out.println("On the motion of the line is a figure ");
+                hop = false;
+                break;
+            }
+        }
+      if(hop && (start.x == end.x) & (Math.abs(start.y -end.y)==1)) return true;
+        else if (hop && (start.y == end.y) & (Math.abs(start.x -end.x)==1)) return true;
         else return false;
     }
     public Chess[] allMoves(Chess start) {

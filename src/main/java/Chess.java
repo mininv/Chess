@@ -9,10 +9,12 @@ public class Chess {
     int y;
     String name = "123";
     Chess[]newMove = new Chess[2];
+    boolean hop = true;
     public Chess(int y, char x){
         this.y = y;
         this.x = x;
     }
+
     public String getName(){
         return this.name;
     }
@@ -24,7 +26,7 @@ public class Chess {
 
 
 
-    public boolean move(Chess start, Chess end){
+    public boolean move(Chess start, Chess end, Chess [] chesses){
         if((start.getX()== end.getX()) &(start.getY()== end.getY())){
             return false;
         }
