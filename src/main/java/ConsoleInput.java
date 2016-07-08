@@ -4,7 +4,9 @@ import java.util.Scanner;
  * Created by vlad on 28.06.16.
  */
 public class ConsoleInput {
+
     private Scanner scaner = new Scanner(System.in);
+
     public String ask(String question){
         System.out.print(question);
         return scaner.nextLine();
@@ -42,6 +44,7 @@ public class ConsoleInput {
             throw new MenuOutException("Out of menu range. ");
         }
     }
+
     public String ask(String question ,String[] ra){
         String alf = this.ask(question);
         boolean exist = false;
@@ -57,4 +60,5 @@ public class ConsoleInput {
             throw new MenuOutException("Out of menu range. ");
         }
     }
+
 }

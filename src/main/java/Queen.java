@@ -7,10 +7,12 @@ public class Queen extends Chess{
     String name = "Queen";
     Chess[]newMove = new Queen[100];
     int position = 0;
+
     public Queen(int y, char x) {
         super(y,x);
         super.name= this.name;
     }
+
     public boolean move(Chess start, Chess end, Chess[] chesses){
         if (start.getY() == end.getY()
                 & end.getX() != start.getX()) { // перемещение по горизонтали
@@ -136,6 +138,7 @@ public class Queen extends Chess{
         else if (hop && (start.y == end.y) & (start.x != end.x)) return true;
         else return false;
     }
+
     public Chess[] allMoves(Chess start) {
         int y = 1;
         char x = start.getX();
@@ -169,6 +172,7 @@ public class Queen extends Chess{
         }while (x>='h');
         return newMove;
     }
+
     public boolean canMove(Chess end){// проверка попадания конечного хода в массив
         boolean move = false;
         for (Chess css: newMove) {

@@ -2,6 +2,7 @@
  * Created by vlad on 28.06.16.
  */
 public class Action {
+
     public Chess [] chesses = new Chess [64];// максю число фигур на шахматной доске
     private int position = 0;
     // добавляем фигуру на вирт доску
@@ -28,4 +29,5 @@ public class Action {
         }
         return result;
     }
+
 }

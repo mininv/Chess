@@ -11,6 +11,7 @@ public class Knight extends Chess{
        super(y,x);
         super.name= this.name;
     }
+
     public boolean move(Chess start, Chess end, Chess[] chesses){
         for (Chess ch: chesses
                 ) {
@@ -24,6 +25,7 @@ public class Knight extends Chess{
         if( hop && (Math.abs(start.y -end.y))== 2 & (Math.abs(start.x -end.x) == 1 )) return true;
         else return false;
     }
+
     public Chess[] allMoves(Chess start){//запись массива возможных ходов
         newMove[0]= new Chess(start.getY()+1,(char)(start.getX()-2));
         newMove[1]= new Chess(start.getY()+2,(char)(start.getX()-1));
@@ -35,6 +37,7 @@ public class Knight extends Chess{
         newMove[7]= new Chess(start.getY()-1,(char)(start.getX()-2));
         return newMove;
     }
+
     public boolean canMove(Chess end){// проверка попадания конечного хода в массив
         boolean move = false;
         for (Chess css: newMove) {

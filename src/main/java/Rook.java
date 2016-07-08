@@ -7,10 +7,12 @@ public class Rook extends Chess{
     Chess[]newMove = new Rook[100];
     int position = 0;
     String name = "Rook";
+
     public Rook(int y, char x) {
         super(y,x);
         super.name= this.name;
     }
+
     public boolean move(Chess start, Chess end, Chess[] chesses){
         if (start.getY() == end.getY()
                 & end.getX() != start.getX()) { // перемещение по горизонтали
@@ -74,6 +76,7 @@ public class Rook extends Chess{
         else if (hop && (start.y == end.y) & (start.x != end.x)) return true;
         else return false;
     }
+
     public Chess[] allMoves(Chess start) {
         int y = 1;
         char x = start.getX();
@@ -87,6 +90,7 @@ public class Rook extends Chess{
         }while (x<='h');
         return newMove;
     }
+
     public boolean canMove(Chess end){// проверка попадания конечного хода в массив
         boolean move = false;
         for (Chess css: newMove) {

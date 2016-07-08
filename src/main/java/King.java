@@ -2,15 +2,18 @@
  * Created by vlad on 28.06.16.
  */
 public class King extends Chess{
+
     int y;
     char x;
     Chess[]newMove = new King[20];
     int position = 0;
     String name = "King";
+
     public King(int y, char x) {
         super(y,x);
         super.name= this.name;
     }
+
     public boolean move(Chess start, Chess end, Chess[] chesses){
         for (Chess ch: chesses
                 ) {
@@ -24,6 +27,7 @@ public class King extends Chess{
         else if (hop && (start.y == end.y) & (Math.abs(start.x -end.x)==1)) return true;
         else return false;
     }
+
     public Chess[] allMoves(Chess start) {
         int y = start.getY() -1;
         char x = (char) (start.getX() - 1);
@@ -42,6 +46,7 @@ public class King extends Chess{
         }while (y<= start.getY()+1);
         return newMove;
     }
+
     public boolean canMove(Chess end){// проверка попадания конечного хода в массив
         boolean move = false;
         for (Chess css: newMove) {
@@ -53,4 +58,4 @@ public class King extends Chess{
         return move;
     }
 
-    }
+}

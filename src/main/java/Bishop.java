@@ -2,9 +2,11 @@
  * Created by vlad on 28.06.16.
  */
 public class Bishop extends Chess{
+
     String name = "Bishop";
     int position = 0;
     Chess[]newMove = new Bishop[50];
+
     public Bishop(int y, char x) {
         super(y,x);
         super.name= this.name;
@@ -75,6 +77,7 @@ public class Bishop extends Chess{
                 & (Math.abs(start.y -end.y)==Math.abs(start.x -end.x))) return true;
         else return false;
     }
+
     public Chess[] allMoves(Chess start){
         int y = start.getY();
         char x = start.getX();
@@ -98,6 +101,7 @@ public class Bishop extends Chess{
         }while (x>='h');
         return newMove;
     }
+
     public boolean canMove(Chess end){// проверка попадания конечного хода в массив
         boolean move = false;
         for (Chess css: newMove) {
@@ -108,4 +112,5 @@ public class Bishop extends Chess{
         }
         return move;
     }
+
 }

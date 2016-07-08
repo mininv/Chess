@@ -8,4 +8,5 @@ public interface UserAction{
     void execute(ConsoleInput input, Action action);
 
     String info();
+
 }

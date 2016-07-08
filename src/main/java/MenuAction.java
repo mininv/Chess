@@ -2,6 +2,7 @@
  * Created by vlad on 28.06.16.
  */
 public class MenuAction {
+
     private  char[] chrang = {'a', 'b', 'c', 'd','e','f','g','h'};//допустимый ввод букв
     private  int [] cifri = {1,2,3,4,5,6,7,8};//допустимый ввод цифр
     private String[] namesCH = {"King","Knight","Bishop","Pawn","Queen","Rook"};//допустимые названия клеток
@@ -14,13 +15,13 @@ public class MenuAction {
         this.input = input;
         this.action = action;
     }
+
     public void fillActions(){
         this.acts[position++] = (UserAction) this.new AddChess("Add a new figure. ");
         this.acts[position++] = (UserAction) this.new ShowChesses("Show all figures. ");
         this.acts[position++] = (UserAction) this.new MoveChess("Move the selected figures. ");
 
     }
-
 
     public void select(int key){
         this.acts[key].execute(this.input, this.action);
@@ -33,11 +34,14 @@ public class MenuAction {
             }
         }
     }
+
     public class AddChess implements UserAction {
         String name;
+
         public AddChess(String name) {
             this.name = name;
         }
+
         public int key(){
             return 0;
         }
@@ -53,6 +57,7 @@ public class MenuAction {
             else if (que.equals("Queen")){action.add(new Queen(y,x));}
             else if (que.equals("Rook")){action.add(new Rook(y,x));}
         }
+
         public String info(){
             return String.format("%s. %s", this.key(),
                     this.name );
@@ -61,9 +66,11 @@ public class MenuAction {
     }
         public class ShowChesses implements UserAction {
             String name;
+
             public ShowChesses(String name) {
                 this.name = name;
             }
+
             public int key(){
                 return 1;
             }
@@ -74,6 +81,7 @@ public class MenuAction {
                             chess.getX() , chess.getY()));
                 }
             }
+
             public String info(){
                 return String.format("%s. %s", this.key(),
                         this.name );
@@ -81,9 +89,11 @@ public class MenuAction {
         }
         public class MoveChess implements UserAction{
             String name;
+
             public MoveChess(String name) {
                 this.name = name;
             }
+
             public int key(){
                 return 2;
             }
@@ -117,6 +127,7 @@ public class MenuAction {
                     }
                 }
             }
+
             public String info(){
                 return String.format("%s. %s", this.key(),
                         this.name );

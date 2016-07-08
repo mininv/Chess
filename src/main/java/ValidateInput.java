@@ -2,6 +2,7 @@
  * Created by vlad on 30.06.16.
  */
 public class ValidateInput extends ConsoleInput{
+
     public int ask(String question, int[] range){
         boolean invalid = true;
         int value = -1;
@@ -18,6 +19,7 @@ public class ValidateInput extends ConsoleInput{
         }while(invalid);
         return value;
     }
+
     public char ask(String question, char[] range){
         boolean invalid = true;
         char value = 'z';
@@ -34,6 +36,7 @@ public class ValidateInput extends ConsoleInput{
         }while(invalid);
         return value;
     }
+
     public String ask(String question, String[] ra){
         boolean invalid = true;
         String value="";
@@ -50,4 +53,5 @@ public class ValidateInput extends ConsoleInput{
         }while(invalid);
         return value;
     }
+
 }
